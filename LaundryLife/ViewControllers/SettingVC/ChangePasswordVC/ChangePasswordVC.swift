@@ -22,3 +22,8 @@ class ChangePasswordVC: UIViewController {
     }
     
 }
+
+
+extension ChangePasswordVC {
+    
+}

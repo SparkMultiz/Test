@@ -1,10 +1,8 @@
 //
-//  IPAutoScalingLabel.swift
-//  RAVAS
+//  Created by Chirag Patel on 7/21/18.
+//  Copyright © 2018 Spark.multiz. All rights reserved.
 //
-//  Created by Tops on 12/15/17.
-//  Copyright © 2017 Self. All rights reserved.
-//
+
 
 import UIKit
 
@@ -21,10 +19,7 @@ class IPAutoScalingLabel: UILabel {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        //print("awakeFromNib")
-       // print("\(self.font.pointSize)")
         autoscalingSizeOflable()
-        //print("\(self.font.pointSize)")
     }
     
     func autoscalingSizeOflable (){

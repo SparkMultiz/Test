@@ -1,9 +1,6 @@
 //
-//  IPAutoScalingButton.swift
-//  RAVAS
-//
-//  Created by Tops on 12/15/17.
-//  Copyright © 2017 Self. All rights reserved.
+//  Created by Chirag Patel on 7/21/18.
+//  Copyright © 2018 Spark.multiz. All rights reserved.
 //
 
 import UIKit

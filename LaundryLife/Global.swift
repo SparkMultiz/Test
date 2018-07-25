@@ -20,7 +20,7 @@ class Global {
     static var IsOffline:Bool = false
     
     //MARK: - API BASE URL
-    static let baseURLPath = "http://ec2-54-76-167-153.eu-west-1.compute.amazonaws.com:8080/"
+    static let baseURLPath = "https://api.wifiplug.co.uk/v1.0/"
     
     
   
@@ -79,12 +79,12 @@ class Global {
     
     // MARK: -  Application Colors
     struct kAppColor {
-        static let PrimaryBlue =  #colorLiteral(red: 0.1254901961, green: 0.2431372549, blue: 0.4862745098, alpha: 1)   //Global().RGB(r: 47.0, g: 128.0, b: 209.0, a: 1.0)
+        static let PrimaryBlue =  #colorLiteral(red: 0.2777936161, green: 0.7066194415, blue: 0.5150870085, alpha: 1)   //Global().RGB(r: 47.0, g: 128.0, b: 209.0, a: 1.0)
         static let PrimaryYellow =  #colorLiteral(red: 1, green: 0.7764705882, blue: 0.03921568627, alpha: 1)
         static let SecondaryGrey =  #colorLiteral(red: 0.3333333333, green: 0.3333333333, blue: 0.3333333333, alpha: 1)
         static let SecondaryBlue365188 =  #colorLiteral(red: 0.2117647059, green: 0.3176470588, blue: 0.5333333333, alpha: 1)
         static let SecondaryBlue4059 =  #colorLiteral(red: 0.2509803922, green: 0.3490196078, blue: 0.5607843137, alpha: 1)
-        static let SecondaryWightF7 =  #colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1)
+        static let LightColor =  #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         static let SecondaryWightF1E =  #colorLiteral(red: 0.9450980392, green: 0.937254902, blue: 0.9411764706, alpha: 0.796403104) // for place holder
         static let SecondaryCopyWightF1E =  #colorLiteral(red: 0.9450980392, green: 0.937254902, blue: 0.9411764706, alpha: 1)
         static let SecondaryRed =  #colorLiteral(red: 0.862745098, green: 0.3058823529, blue: 0.2549019608, alpha: 1)
@@ -118,6 +118,9 @@ class Global {
         return ((Global.screenWidth) * fontsize) / 320
     }
     
+    func getDeviceSpecificFontSizeHeight(_ fontsize: CGFloat) -> CGFloat {
+        return ((Global.screenHeight) * fontsize) / 568
+    }
     struct is_Reachablity {
         var isNetwork = Global.singleton.isConnectivityChecked()
     }

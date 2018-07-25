@@ -12,42 +12,30 @@ import UIKit
 
 enum LeftMenu: Int {
     
-    case BuyMemberShip = 0
-    case MyMembership
-    case MyBooking
-    case Report
-    case Help
-    case RateUS
+    case Home = 0
+    case Notification
+    case Energy
+    case Shope
+    case TripTracks
     case Settings
-    case Logout
-    
+    case Help
 }
 
 class LeftMenuBarVC: UIViewController {
     
     @IBOutlet weak var tblSlideMenu: UITableView!
     
-    @IBOutlet weak var imgProfile: UIImageView!
-    @IBOutlet weak var lblUserName: UILabel!
-    @IBOutlet weak var btnProfileClick: UIButton!
-    @IBOutlet weak var lblCalories: IPAutoScalingLabel!
-    @IBOutlet weak var lblRideRate: IPAutoScalingLabel!
-    @IBOutlet weak var lblMiles: IPAutoScalingLabel!
-    @IBOutlet weak var lblEditProfileIcon: UILabel!
+    var menusList = ["Home","Notifications","Energy","Shop", "Tips and tricks","Settings","Help"]
     
-    var menusList = ["Buy Membership","My Memberships","My Bookings","Report", "Help","Rate us","Settings","Logout"]
+    var menuImage = [#imageLiteral(resourceName: "home"),#imageLiteral(resourceName: "Notifications"),#imageLiteral(resourceName: "Energy"),#imageLiteral(resourceName: "Shope"),#imageLiteral(resourceName: "TipsAndTricks"),#imageLiteral(resourceName: "Settings"),#imageLiteral(resourceName: "Settings")]
     
-    var menuImage = ["","","", "","","","",""]
-    
-    var MyProfileVController: UIViewController!
-    var BuyMembershipVController: UIViewController!
-    var MyMemberShipVController: UIViewController!
-    var MyBookingVController: UIViewController!
-    
-    var ReportVController: UIViewController!
-    var helpVController: UIViewController!
-    var RatingVController: UIViewController!
+    var HomeVController: UIViewController!
+    var NotificationsVController: UIViewController!
+    var EnergyVController: UIViewController!
+    var ShopVController: UIViewController!
+    var TripTricksVController: UIViewController!
     var SettingVController: UIViewController!
+    var HelpVController: UIViewController!
     var profileDetail = NSMutableDictionary()
     
     override func viewDidLoad() {
@@ -56,132 +44,75 @@ class LeftMenuBarVC: UIViewController {
         tblSlideMenu.estimatedRowHeight = 40
         tblSlideMenu.rowHeight = UITableViewAutomaticDimension
         setControllerMethod()
-        
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: Global.notification.Push_ProfileDataCall), object: nil);
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(userProfileCustomDataInSlideBar(notification:)), name: NSNotification.Name(rawValue: Global.notification.Push_ProfileDataCall), object: nil)
-        
-    }
-    
-    
-    
-    
-    func userProfileCustomDataInSlideBar(notification:Notification) -> Void {
-        let dictInfoUser = Global.appdel.dictUserInfo
-        if (dictInfoUser["FLAG"] as! Bool) {
-            let strCalories = "\(dictInfoUser["CALORIES"] as? Int ?? 0)"
-            let strRides = "\(dictInfoUser["RIDES"] as? Int ?? 0)"
-            let dubleMileValue = Double(dictInfoUser["MILES"] as? String ?? "0.00")
-            let strMile  = String(format:"%.2f",dubleMileValue!)
-            
-            self.profileDetail.setValue(strCalories , forKey: "Calories")
-            self.profileDetail.setValue(strRides , forKey: "Rides")
-            self.profileDetail.setValue(strMile , forKey: "Mile")
-            
-            if let arrResult = dictInfoUser["USER_DETAILS"] as? NSArray{
-                if let dicResult = arrResult[0] as? NSDictionary {
-                    
-                    
-                    let strFirstName = dicResult["first_name"] as? String ?? ""
-                    let strLastName = dicResult["last_name"] as? String ?? ""
-                    
-                    self.profileDetail.setValue("\(strFirstName) \(strLastName)"
-                        , forKey: "username")
-                    self.profileDetail.setValue(dicResult["profile_image"] as? String ?? ""
-                        , forKey: "profile_image")
-                }
-            }
-        }
-        setUpHeaderData()
-        self.tblSlideMenu.reloadData()
-    }
-    
-    
-    func setUpHeaderData() {
-        
-        let strProfileImgUrl = profileDetail.object(forKey: "profile_image") as? String ?? ""
-        imgProfile.sd_setImage(with: URL(string: strProfileImgUrl), placeholderImage: UIImage(named: "NoProfileImage"))
-        lblUserName.text = profileDetail.object(forKey: "username") as? String ?? ""
-        
-        lblMiles.text = profileDetail.object(forKey: "Mile") as? String ?? ""
-        lblCalories.text = profileDetail.object(forKey: "Calories") as? String ?? ""
-        lblRideRate.text = profileDetail.object(forKey: "Rides") as? String ?? ""
-        btnProfileClick.addTarget(self, action: #selector(btnProfileClick(sender:)), for: .touchUpInside)
     }
     
     func setControllerMethod() {
         
-        let MyProfileController = MyProfileVC(nibName: "MyProfileVC", bundle: nil)
-        self.MyProfileVController = UINavigationController(rootViewController: MyProfileController)
+        let HomeController = HomeVC(nibName: "HomeVC", bundle: nil)
+        self.HomeVController = UINavigationController(rootViewController: HomeController)
         
-        let BuyMembershipController = BuyMembershipVC(nibName: "BuyMembershipVC", bundle: nil)
-        self.BuyMembershipVController = UINavigationController(rootViewController: BuyMembershipController)
-        
-        let MyMembershipController = MyMemberShipVC(nibName: "MyMemberShipVC", bundle: nil)
-        self.MyMemberShipVController = UINavigationController(rootViewController: MyMembershipController)
-        
-        let MyBookingVController = MyRentalVC(nibName: "MyRentalVC", bundle: nil)
-        self.MyBookingVController = UINavigationController(rootViewController: MyBookingVController)
+        let NotiController = NotificationVC(nibName: "NotificationVC", bundle: nil)
+        self.NotificationsVController = UINavigationController(rootViewController: NotiController)
         
         
-        let ReportController = ReportVC(nibName: "ReportVC", bundle: nil)
-        self.ReportVController = UINavigationController(rootViewController: ReportController)
+        let EnergyController = EnergyVC(nibName: "EnergyVC", bundle: nil)
+        self.EnergyVController = UINavigationController(rootViewController: EnergyController)
         
-        let helpController = helpVC(nibName: "helpVC", bundle: nil)
-        self.helpVController = UINavigationController(rootViewController: helpController)
+        let ShopController = ShopVC(nibName: "ShopVC", bundle: nil)
+        self.ShopVController = UINavigationController(rootViewController: ShopController)
+        
+        let TripAndTrickController = TripAndTrickVC(nibName: "TripAndTrickVC", bundle: nil)
+        self.TripTricksVController = UINavigationController(rootViewController: TripAndTrickController)
         
         
-        let SettingController = SettingVC(nibName: "SettingVC", bundle: nil)
+        let SettingController = SettingsVC(nibName: "SettingsVC", bundle: nil)
         self.SettingVController = UINavigationController(rootViewController: SettingController)
-        
+        let HelpController = HelpVC(nibName: "HelpVC", bundle: nil)
+        self.HelpVController = UINavigationController(rootViewController: HelpController)
+
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.view.layoutIfNeeded()
-        imgProfile.layer.cornerRadius = imgProfile.frame.height / 2
-        lblEditProfileIcon.layer.cornerRadius = lblEditProfileIcon.frame.height / 2
-        lblEditProfileIcon.clipsToBounds = true
-        imgProfile.clipsToBounds = true
     }
     
     func changeViewController(_ menuController: LeftMenu) {
         
         switch menuController {
-        case .BuyMemberShip:
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: Global.notification.is_PushNotification_BuyMembership), object: nil)
-            self.slideMenuController()?.changeMainViewController(self.BuyMembershipVController, close: true)
-        case .MyMembership:
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: Global.notification.is_PushNotification_MyMembershiop), object: nil)
-
-            self.slideMenuController()?.changeMainViewController(self.MyMemberShipVController, close: true)
+        case .Home:
+            //  NotificationCenter.default.post(name: NSNotification.Name(rawValue: Global.notification.is_PushNotification_BuyMembership), object: nil)
+            self.slideMenuController()?.changeMainViewController(self.HomeVController, close: true)
+        case .Notification:
+            // NotificationCenter.default.post(name: NSNotification.Name(rawValue: Global.notification.is_PushNotification_MyMembershiop), object: nil)
             
-        case .MyBooking:
+            self.slideMenuController()?.changeMainViewController(self.NotificationsVController, close: true)
             
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: Global.notification.is_PushNotification_Booking), object: nil)
-            self.slideMenuController()?.changeMainViewController(self.MyBookingVController, close: true)
-        case .Report:
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: Global.notification.is_PushNotification_Report), object: nil)
-
-            self.slideMenuController()?.changeMainViewController(self.ReportVController, close: true)
-        case .Help:
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: Global.notification.is_PushNotification_Help), object: nil)
-
-            self.slideMenuController()?.changeMainViewController(self.helpVController, close: true)
-        case .RateUS:
-            self.slideMenuController()?.changeMainViewController(self.RatingVController, close: true)
+        case .Energy:
+            
+            // NotificationCenter.default.post(name: NSNotification.Name(rawValue: Global.notification.is_PushNotification_Booking), object: nil)
+            self.slideMenuController()?.changeMainViewController(self.EnergyVController, close: true)
+        case .Shope:
+            //NotificationCenter.default.post(name: NSNotification.Name(rawValue: Global.notification.is_PushNotification_Report), object: nil)
+            
+            self.slideMenuController()?.changeMainViewController(self.ShopVController, close: true)
+        case .TripTracks:
+            // NotificationCenter.default.post(name: NSNotification.Name(rawValue: Global.notification.is_PushNotification_Help), object: nil)
+            
+            self.slideMenuController()?.changeMainViewController(self.TripTricksVController, close: true)
         case .Settings:
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: Global.notification.is_PushNotification_Settings), object: nil)
-
             self.slideMenuController()?.changeMainViewController(self.SettingVController, close: true)
-        case .Logout:
-            self.logoutMethodCall()
+        case .Help:
+            // NotificationCenter.default.post(name: NSNotification.Name(rawValue: Global.notification.is_PushNotification_Settings), object: nil)
+            
+            self.slideMenuController()?.changeMainViewController(self.HelpVController, close: true)
+            break
+            
         }
-        
     }
     func logoutMethodCall() {
         Global().delay(delay: 0.5) {
-            Global.appdel.LogoutUser()
+            // Global.appdel.LogoutUser()
         }
     }
     
@@ -198,41 +129,34 @@ extension LeftMenuBarVC : UITableViewDataSource, UITableViewDelegate {
         
         let Cell:tableCustomCell = tableView.dequeueReusableCell(withIdentifier: "tableCustomCell") as! tableCustomCell
         Cell.lblControllerName.text = menusList[indexPath.row]
-        Cell.lblMenuName.text = menuImage[indexPath.row]
-        if Global.appdel.sideMenuSelection == indexPath.row {
-            Cell.lblControllerName.textColor = UIColor.red
-            Cell.lblMenuName.textColor = UIColor.red
-        } else  {
-            Cell.lblControllerName.textColor = UIColor.black
-            Cell.lblMenuName.textColor = UIColor.black
-        }
+        Cell.imgMenu.image = menuImage[indexPath.row]
+        Cell.lblControllerName.textColor = Global.kAppColor.PrimaryBlue
+        
+//        if Global.appdel.sideMenuSelection == indexPath.row {
+//            Cell.lblControllerName.textColor = UIColor.red
+//            Cell.lblMenuName.textColor = UIColor.red
+//        } else  {
+//            Cell.lblControllerName.textColor = UIColor.black
+//            Cell.lblMenuName.textColor = UIColor.black
+//        }
+        
         Cell.selectionStyle = .none
         return Cell
     }
     
-    func btnProfileClick(sender:UIButton)  {
-        self.slideMenuController()?.changeMainViewController(self.MyProfileVController, close: true)
+    
+    func getDeviceSpecificFontSizeHeight(_ fontsize: CGFloat) -> CGFloat {
+        return ((Global.screenHeight) * fontsize) / 568
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.tblSlideMenu.frame.height / 8
+        return self.getDeviceSpecificFontSizeHeight(35)
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        Global.appdel.sideMenuSelection = indexPath.row
+        //Global.appdel.sideMenuSelection = indexPath.row
         tblSlideMenu.reloadData()
-        if indexPath.row == 8 {
-            self.logoutMethodCall()
-        } else if indexPath.row == 5 {
-            UIApplication.shared.openURL(URL(string: "https://itunes.apple.com/us/app/kolonishare/id1265110043?mt=8")!)
-        } else if indexPath.row ==  4 || indexPath.row == 5 {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: Global.notification.is_KeyboardNumbericOpen), object: nil)
-            if let menuController = LeftMenu(rawValue: indexPath.row) {
-                self.changeViewController(menuController)
-            }
-        } else  {
-            if let menuController = LeftMenu(rawValue: indexPath.row) {
-                self.changeViewController(menuController)
-            }
+        if let menuController = LeftMenu(rawValue: indexPath.row) {
+            self.changeViewController(menuController)
         }
         
     }

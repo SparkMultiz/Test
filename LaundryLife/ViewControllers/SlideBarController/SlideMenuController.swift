@@ -20,7 +20,7 @@ import UIKit
 
 public struct SlideMenuOptions {
     
-    public static var leftViewWidth: CGFloat = Global.getDeviceSpecificFontSize(280)
+    public static var leftViewWidth: CGFloat = 280
     public static var leftBezelWidth: CGFloat? = 0.0
     public static var contentViewScale: CGFloat = 1.0
     public static var contentViewOpacity: CGFloat = 0.5
@@ -260,7 +260,6 @@ open class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
         closeLeftWithVelocity(0.0)
         setCloseWindowLevel()
         
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: Global.notification.is_BookingStartStrip), object: nil)
     }
     
     open override func closeRight() {
@@ -903,7 +902,7 @@ open class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
     fileprivate func setOpenWindowLevel() {
         if SlideMenuOptions.hideStatusBar {
             DispatchQueue.main.async(execute: {
-                if let window = UIApplication.shared.keyWindow {
+                if UIApplication.shared.keyWindow != nil {
                    // window.windowLevel = UIWindowLevelStatusBar + 1
                 }
             })
@@ -913,7 +912,7 @@ open class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
     fileprivate func setCloseWindowLevel() {
         if SlideMenuOptions.hideStatusBar {
             DispatchQueue.main.async(execute: {
-                if let window = UIApplication.shared.keyWindow {
+                if UIApplication.shared.keyWindow != nil {
                     //window.windowLevel = UIWindowLevelNormal
                 }
             })

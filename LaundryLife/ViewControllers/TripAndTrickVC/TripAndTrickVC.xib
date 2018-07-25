@@ -1,13 +1,24 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue-Medium</string>
+        </array>
+    </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TripAndTrickVC" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TripAndTrickVC" customModule="LaundryLife" customModuleProvider="target">
             <connections>
+                <outlet property="btnSlideMenu" destination="oeA-fb-i6K" id="8RF-97-BEh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,8 +26,48 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kJP-AT-YDk" userLabel="HeaderView">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trips and tricks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tnj-1c-nho" customClass="IPAutoScalingLabel" customModule="LaundryLife" customModuleProvider="target">
+                            <rect key="frame" x="69.5" y="27" width="120.5" height="20.5"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oeA-fb-i6K">
+                            <rect key="frame" x="10" y="22.5" width="29.5" height="29"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="oeA-fb-i6K" secondAttribute="height" multiplier="1:1" id="we5-dB-JeO"/>
+                            </constraints>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" image="Menu"/>
+                            <connections>
+                                <action selector="btnSlidMenuClick:" destination="-1" eventType="touchUpInside" id="9ER-Jv-OV3"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.27779361609999997" green="0.7066194415" blue="0.5150870085" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="Tnj-1c-nho" firstAttribute="leading" secondItem="oeA-fb-i6K" secondAttribute="trailing" constant="30" id="JfN-HN-phy"/>
+                        <constraint firstItem="oeA-fb-i6K" firstAttribute="centerY" secondItem="kJP-AT-YDk" secondAttribute="centerY" constant="5" id="KGM-0t-4Ea"/>
+                        <constraint firstAttribute="height" constant="64" id="SQn-vn-JHM"/>
+                        <constraint firstItem="oeA-fb-i6K" firstAttribute="leading" secondItem="kJP-AT-YDk" secondAttribute="leading" constant="10" id="e47-kK-Hd5"/>
+                        <constraint firstItem="Tnj-1c-nho" firstAttribute="centerY" secondItem="kJP-AT-YDk" secondAttribute="centerY" constant="5" id="oMF-Oh-Gp0"/>
+                    </constraints>
+                </view>
+            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <constraints>
+                <constraint firstItem="oeA-fb-i6K" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="25/320" id="NJu-Oe-miz"/>
+                <constraint firstItem="kJP-AT-YDk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="VSh-Ed-SfO"/>
+                <constraint firstItem="kJP-AT-YDk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="eIa-BP-XMF"/>
+                <constraint firstAttribute="trailing" secondItem="kJP-AT-YDk" secondAttribute="trailing" id="yQe-ah-Z8V"/>
+            </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="Menu" width="36" height="36"/>
+    </resources>
 </document>

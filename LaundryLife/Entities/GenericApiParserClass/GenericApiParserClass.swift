@@ -8,6 +8,9 @@
 
 import UIKit
 
-class ApiParserManager: NSObject {
+class GenericApiParserClass: NSObject {
 
+    func loginParserCallMethod() {
+    
+    }
 }

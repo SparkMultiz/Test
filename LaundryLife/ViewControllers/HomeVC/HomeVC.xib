@@ -1,13 +1,24 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue-Medium</string>
+        </array>
+    </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeVC" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeVC" customModule="LaundryLife" customModuleProvider="target">
             <connections>
+                <outlet property="btnSlideMenu" destination="TIh-mz-QMs" id="K73-91-KZS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,8 +26,50 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GJC-Hz-hv6" userLabel="HeaderView">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSa-Q8-hOc" customClass="IPAutoScalingLabel" customModule="LaundryLife" customModuleProvider="target">
+                            <rect key="frame" x="69.5" y="27" width="47" height="20.5"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TIh-mz-QMs">
+                            <rect key="frame" x="10" y="22.5" width="29.5" height="29"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="TIh-mz-QMs" secondAttribute="height" multiplier="1:1" id="Z0U-S1-xw9"/>
+                            </constraints>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" image="Menu">
+                                <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="btnSlideMenuClick:" destination="-1" eventType="touchUpInside" id="jcR-dU-AvY"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.27779361609999997" green="0.7066194415" blue="0.5150870085" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="TIh-mz-QMs" firstAttribute="centerY" secondItem="GJC-Hz-hv6" secondAttribute="centerY" constant="5" id="H9d-DM-ODI"/>
+                        <constraint firstItem="mSa-Q8-hOc" firstAttribute="leading" secondItem="TIh-mz-QMs" secondAttribute="trailing" constant="30" id="ICb-iA-Eaa"/>
+                        <constraint firstAttribute="height" constant="64" id="WEp-M7-EMk"/>
+                        <constraint firstItem="TIh-mz-QMs" firstAttribute="leading" secondItem="GJC-Hz-hv6" secondAttribute="leading" constant="10" id="eSC-1w-jMj"/>
+                        <constraint firstItem="TIh-mz-QMs" firstAttribute="centerY" secondItem="mSa-Q8-hOc" secondAttribute="centerY" id="vTt-3T-aDj"/>
+                    </constraints>
+                </view>
+            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <constraints>
+                <constraint firstItem="TIh-mz-QMs" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="25/320" id="LTf-JQ-MXX"/>
+                <constraint firstAttribute="trailing" secondItem="GJC-Hz-hv6" secondAttribute="trailing" id="VX7-6l-J0r"/>
+                <constraint firstItem="GJC-Hz-hv6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Vw0-do-hKX"/>
+                <constraint firstItem="GJC-Hz-hv6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ZKv-WA-gBa"/>
+            </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="Menu" width="36" height="36"/>
+    </resources>
 </document>

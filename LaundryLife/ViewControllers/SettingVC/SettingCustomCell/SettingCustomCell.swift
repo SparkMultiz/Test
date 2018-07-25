@@ -9,7 +9,11 @@
 import UIKit
 
 class SettingCustomCell: UITableViewCell {
-
+    @IBOutlet weak var imgRightBarSettings: UIImageView!
+    
+    @IBOutlet weak var lblSettingsDiscription: IPAutoScalingLabel!
+    @IBOutlet weak var lblSettingsName: IPAutoScalingLabel!
+    @IBOutlet weak var ImgSettings: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

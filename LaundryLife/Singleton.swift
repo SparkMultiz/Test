@@ -32,7 +32,11 @@ class Singleton: NSObject {
     func getDeviceSpecificFontSize(_ fontsize: CGFloat) -> CGFloat {
         return ((Global.screenWidth) * fontsize) / 320
     }
-     
+    
+    func getDeviceSpecificFontSizeHeight(_ fontsize: CGFloat) -> CGFloat {
+        return ((Global.screenHeight) * fontsize) / 480
+    }
+    
     // MARK: -  Show Message on Success and Failure
     func showSuccessAlert(withMsg message: String) {
         ISMessages.showCardAlert(withTitle: "", message: message, duration: 3.0, hideOnSwipe: true, hideOnTap: true, alertType: ISAlertType.success, alertPosition: ISAlertPosition.top, didHide: nil)
